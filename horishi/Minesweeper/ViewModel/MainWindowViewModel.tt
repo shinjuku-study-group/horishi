@@ -1,0 +1,110 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# 
+    string[] get_only_props = new[]
+    {
+        "WindowTitle", "WindowWidth", "WindowHeight",
+        "CellWidth", "CellHeight",
+        "ContainerMargin",
+        "StartButtonContext",
+        "RemainMineCountLabel",
+        "ClearTimeLabelContext"
+    };
+    IEnumerable<string[]> get_and_set_props = new[]
+    {
+        new string[] { "clearTextLableContext", "ClearTextLableContext" },
+        new string[] { "clearTime", "ClearTime" },
+    };
+
+    int colNum = 5; 
+    int rowNum = 5; 
+#>
+using Minesweeper.Common;
+using Minesweeper.Properties;
+using System;
+using System.Collections.Generic;
+
+namespace Minesweeper.ViewModel
+{
+    /// <summary>
+    /// メイン画面のViewModelクラス(t4テンプレート生成部分)
+    /// </summary>
+    public sealed partial class MainWindowViewModel : ViewModelBase
+    {
+
+        #region フィールド
+
+        private IDictionary<Point, CellViewModel> cellGridItemsSource
+            = new Dictionary<Point, CellViewModel>()
+            {
+<#
+    for(int i = 0; i < colNum; i++)
+    {
+        for(int j = 0; j < rowNum; j++)
+        {
+#>
+                    { Point.GetPoint(<#= j #>, <#= i #>), new CellViewModel(string.Empty) },
+<#
+        }
+    }
+#>
+            };
+
+<#
+        foreach(var prop in get_and_set_props)
+        {
+#>
+        private string <#= prop[0] #> = string.Empty;
+<#
+        }
+#>
+
+        #endregion
+
+        #region プロパティ
+
+        public IDictionary<Point, CellViewModel> CellGridItemsSource
+        {
+            get
+            {
+                return this.cellGridItemsSource;
+            }
+        }
+
+<#
+        foreach(var prop in get_only_props)
+        {
+#>
+        public string <#= prop #>
+        {
+            get { return Resources.<#= prop #>; }
+        }
+
+<#
+        }
+        foreach(var prop in get_and_set_props)
+        {
+#>
+        public string <#= prop[1] #>
+        {
+            get
+            {
+                return this.<#= prop[0] #>;
+            }
+            set
+            {
+                this.<#= prop[0] #> = value;
+                base.NotifyChanged("<#= prop[1] #>");
+            }
+        }
+
+<#
+        }
+#>
+        #endregion
+    }
+}

@@ -1,0 +1,28 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# 
+    int colNum = 5;
+    int rowNum = 5;
+ #>
+ namespace Minesweeper.Common
+{
+    public sealed partial class Point
+    {
+<# for(int i = 0; i < rowNum; i++)
+{
+    for(int j = 0; j < colNum; j++)
+    {
+#>
+
+        public static readonly Point Point<#= j #><#= i #>
+            = new Point(<#= j #>, <#= i #>);
+<#
+    }
+}
+#>
+    }
+}
