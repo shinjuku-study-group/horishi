@@ -1,27 +1,31 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
+<#@ assembly name="D:\c#\horishi\Minesweeper\bin\Debug\Minesweeper.exe" #>
+<#@ import namespace="System" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
 <#@ import namespace="System.Collections.Generic" #>
 <#@ output extension=".cs" #>
 <# 
-    string[] get_only_props = new[]
+    IEnumerable<Tuple<Type, string>> get_only_props = new List<Tuple<Type, string>>()
     {
-        "WindowTitle", "WindowWidth", "WindowHeight",
-        "CellWidth", "CellHeight",
-        "ContainerMargin",
-        "StartButtonContext",
-        "RemainMineCountLabel",
-        "ClearTimeLabelContext"
+        new Tuple<Type, string>(typeof(string), "WindowTitle"),
+        new Tuple<Type, string>(typeof(string), "StartButtonContext"),
+        new Tuple<Type, string>(typeof(string), "RemainMineCountLabel"),
+        new Tuple<Type, string>(typeof(string), "ClearTimeLabelContext")
     };
-    IEnumerable<string[]> get_and_set_props = new[]
+    IEnumerable<Tuple<Type, string[]>> get_and_set_props = new List<Tuple<Type, string[]>>()
     {
-        new string[] { "clearTextLableContext", "ClearTextLableContext" },
-        new string[] { "clearTime", "ClearTime" },
+        new Tuple<Type, string[]>(typeof(double), new string[] { "windowWidth", "WindowWidth" }),
+        new Tuple<Type, string[]>(typeof(double), new string[] { "windowHeight", "WindowHeight" }),
+        new Tuple<Type, string[]>(typeof(double), new string[] { "gridWidth", "GridWidth" }),
+        new Tuple<Type, string[]>(typeof(double), new string[] { "gridHeight", "GridHeight" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "column", "Column" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "row", "Row" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "remainMineCount", "RemainMineCount" }),
+        new Tuple<Type, string[]>(typeof(string), new string[] { "clearTextLableContext", "ClearTextLableContext" }),
+        new Tuple<Type, string[]>(typeof(string), new string[] { "clearTime", "ClearTime" }),
     };
-
-    int colNum = 5; 
-    int rowNum = 5; 
 #>
 using Minesweeper.Common;
 using Minesweeper.Properties;
@@ -37,28 +41,12 @@ namespace Minesweeper.ViewModel
     {
 
         #region フィールド
-
-        private IDictionary<Point, CellViewModel> cellGridItemsSource
-            = new Dictionary<Point, CellViewModel>()
-            {
-<#
-    for(int i = 0; i < colNum; i++)
-    {
-        for(int j = 0; j < rowNum; j++)
-        {
-#>
-                    { Point.GetPoint(<#= j #>, <#= i #>), new CellViewModel(string.Empty) },
-<#
-        }
-    }
-#>
-            };
-
 <#
         foreach(var prop in get_and_set_props)
         {
 #>
-        private string <#= prop[0] #> = string.Empty;
+        private <#= prop.Item1 #> <#= prop.Item2[0] #> ;
+
 <#
         }
 #>
@@ -66,39 +54,43 @@ namespace Minesweeper.ViewModel
         #endregion
 
         #region プロパティ
-
-        public IDictionary<Point, CellViewModel> CellGridItemsSource
-        {
-            get
-            {
-                return this.cellGridItemsSource;
-            }
-        }
-
 <#
         foreach(var prop in get_only_props)
         {
 #>
-        public string <#= prop #>
-        {
-            get { return Resources.<#= prop #>; }
-        }
 
+        public <#= prop.Item1 #> <#= prop.Item2 #>
+        {
 <#
+            if(prop.Item1 == typeof(string))
+            {
+#>
+            get { return Resources.<#= prop.Item2 #>; }
+        }
+<#
+            }
+            else
+            {
+#>
+            get { return <#= prop.Item1 #>.Parse(Resources.<#= prop.Item2 #>); }
+        }
+<#
+            }
         }
         foreach(var prop in get_and_set_props)
         {
 #>
-        public string <#= prop[1] #>
+
+        public <#= prop.Item1 #> <#= prop.Item2[1] #>
         {
             get
             {
-                return this.<#= prop[0] #>;
+                return this.<#= prop.Item2[0] #>;
             }
             set
             {
-                this.<#= prop[0] #> = value;
-                base.NotifyChanged("<#= prop[1] #>");
+                this.<#= prop.Item2[0] #> = value;
+                base.NotifyChanged("<#= prop.Item2[1] #>");
             }
         }
 

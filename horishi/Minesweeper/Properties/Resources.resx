@@ -117,12 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="CellHeight" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="CellWidth" xml:space="preserve">
-    <value>20</value>
-  </data>
   <data name="ClearTextLableContext" xml:space="preserve">
     <value>クリアおめでとう！</value>
   </data>
@@ -132,11 +126,35 @@
   <data name="ClearTimeLabelContext" xml:space="preserve">
     <value>クリアタイム　：　</value>
   </data>
-  <data name="ContainerMargin" xml:space="preserve">
-    <value>10</value>
+  <data name="CloseButtonContext" xml:space="preserve">
+    <value>閉じる</value>
   </data>
   <data name="GameOverTextLabelContext" xml:space="preserve">
     <value>あぼん</value>
+  </data>
+  <data name="GameResultWindowTitle" xml:space="preserve">
+    <value>戦績</value>
+  </data>
+  <data name="MenubarHeaderGameLevel" xml:space="preserve">
+    <value>難易度</value>
+  </data>
+  <data name="MenubarHeaderOption" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="MenubarItemCloseWindow" xml:space="preserve">
+    <value>終了する</value>
+  </data>
+  <data name="MenubarItemGameLevelEasy" xml:space="preserve">
+    <value>初級</value>
+  </data>
+  <data name="MenubarItemGameLevelHard" xml:space="preserve">
+    <value>上級</value>
+  </data>
+  <data name="MenubarItemGameLevelNormal" xml:space="preserve">
+    <value>中級</value>
+  </data>
+  <data name="MenubarItemGameResults" xml:space="preserve">
+    <value>戦績</value>
   </data>
   <data name="MineCellMark" xml:space="preserve">
     <value>●</value>
@@ -153,16 +171,13 @@
   <data name="RemainMineCountLabel" xml:space="preserve">
     <value>残り爆弾数　：　</value>
   </data>
+  <data name="ResetButtonContext" xml:space="preserve">
+    <value>リセット</value>
+  </data>
   <data name="StartButtonContext" xml:space="preserve">
     <value>スタート</value>
   </data>
-  <data name="WindowHeight" xml:space="preserve">
-    <value>300</value>
-  </data>
   <data name="WindowTitle" xml:space="preserve">
     <value>俺のマインスイーパー</value>
-  </data>
-  <data name="WindowWidth" xml:space="preserve">
-    <value>200</value>
   </data>
 </root>

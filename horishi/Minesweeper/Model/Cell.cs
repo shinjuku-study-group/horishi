@@ -25,7 +25,7 @@ namespace Minesweeper.Model
         /// </summary>
         public bool IsMarked
         {
-            get { return this.state == CellState.MineMarked || this.state == CellState.QuestionMarked; }
+            get { return this.state == CellState.MineMarked; }
         }
 
         /// <summary>

@@ -61,24 +61,6 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   20 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string CellHeight {
-            get {
-                return ResourceManager.GetString("CellHeight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   20 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string CellWidth {
-            get {
-                return ResourceManager.GetString("CellWidth", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   クリアおめでとう！ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ClearTextLableContext {
@@ -106,11 +88,11 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   10 に類似しているローカライズされた文字列を検索します。
+        ///   閉じる に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string ContainerMargin {
+        internal static string CloseButtonContext {
             get {
-                return ResourceManager.GetString("ContainerMargin", resourceCulture);
+                return ResourceManager.GetString("CloseButtonContext", resourceCulture);
             }
         }
         
@@ -120,6 +102,78 @@ namespace Minesweeper.Properties {
         internal static string GameOverTextLabelContext {
             get {
                 return ResourceManager.GetString("GameOverTextLabelContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   戦績 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string GameResultWindowTitle {
+            get {
+                return ResourceManager.GetString("GameResultWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   難易度 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarHeaderGameLevel {
+            get {
+                return ResourceManager.GetString("MenubarHeaderGameLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   その他 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarHeaderOption {
+            get {
+                return ResourceManager.GetString("MenubarHeaderOption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   終了する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarItemCloseWindow {
+            get {
+                return ResourceManager.GetString("MenubarItemCloseWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   初級 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarItemGameLevelEasy {
+            get {
+                return ResourceManager.GetString("MenubarItemGameLevelEasy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   上級 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarItemGameLevelHard {
+            get {
+                return ResourceManager.GetString("MenubarItemGameLevelHard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   中級 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarItemGameLevelNormal {
+            get {
+                return ResourceManager.GetString("MenubarItemGameLevelNormal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   戦績 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MenubarItemGameResults {
+            get {
+                return ResourceManager.GetString("MenubarItemGameResults", resourceCulture);
             }
         }
         
@@ -169,6 +223,15 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
+        ///   リセット に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ResetButtonContext {
+            get {
+                return ResourceManager.GetString("ResetButtonContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   スタート に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string StartButtonContext {
@@ -178,29 +241,11 @@ namespace Minesweeper.Properties {
         }
         
         /// <summary>
-        ///   300 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string WindowHeight {
-            get {
-                return ResourceManager.GetString("WindowHeight", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   俺のマインスイーパー に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string WindowTitle {
             get {
                 return ResourceManager.GetString("WindowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   200 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string WindowWidth {
-            get {
-                return ResourceManager.GetString("WindowWidth", resourceCulture);
             }
         }
     }

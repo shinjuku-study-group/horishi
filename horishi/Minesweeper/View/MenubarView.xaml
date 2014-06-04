@@ -1,0 +1,19 @@
+﻿<Menu x:Class="Minesweeper.View.MenubarView"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:vm="clr-namespace:Minesweeper.ViewModel">
+    <Menu.DataContext>
+        <vm:MenubarViewModel/>
+    </Menu.DataContext>
+    <MenuItem Header="{Binding Path=GameLevelMenuHeader}" ItemsSource="{Binding Path=GameLevelItemSources}" >
+        <MenuItem.ItemTemplate>
+            <DataTemplate>
+                <MenuItem
+                    Header="{Binding Path=Text}"
+                    IsChecked="{Binding Path=IsChecked, Mode=TwoWay}"
+                    Command="{Binding Path=DataContext.ClickCommand, RelativeSource={RelativeSource AncestorType=Menu}}" />
+            </DataTemplate>
+        </MenuItem.ItemTemplate>
+    </MenuItem>
+</Menu>

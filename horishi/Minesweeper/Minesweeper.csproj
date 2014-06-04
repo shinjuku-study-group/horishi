@@ -35,6 +35,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -53,6 +54,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\GameResult\GameResult.cs" />
+    <Compile Include="Model\GameResult\TotalGameResult.cs" />
+    <Compile Include="Model\Serialize\ISerializer.cs" />
+    <Compile Include="Common\WindowCloseBehavior.cs" />
+    <Compile Include="Model\EasyLevel.cs" />
+    <Compile Include="Model\GameLevel.cs" />
+    <Compile Include="Model\HardLevel.cs" />
+    <Compile Include="Model\NormalLevel.cs" />
+    <Compile Include="Model\Serialize\XmlSerializer.cs" />
+    <Compile Include="ViewModel\ControlSizeDefinition.cs" />
+    <Compile Include="ViewModel\GameLevelMenuItemViewModel.cs" />
+    <Page Include="View\GameResultsWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MainWindowView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -71,11 +87,17 @@
     <Compile Include="Model\GameLogic.cs" />
     <Compile Include="Model\MineCell.cs" />
     <Compile Include="ViewModel\CellViewModel.cs" />
+    <Compile Include="ViewModel\GameResultsWindowViewModel.cs" />
+    <Compile Include="ViewModel\GameResultViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel.cs" />
     <Compile Include="ViewModel\MainWindowViewModel1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MainWindowViewModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModel\MenubarViewModel.cs" />
+    <Compile Include="View\GameResultsWindowView.xaml.cs">
+      <DependentUpon>GameResultsWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainWindowView.xaml.cs">
       <DependentUpon>MainWindowView.xaml</DependentUpon>

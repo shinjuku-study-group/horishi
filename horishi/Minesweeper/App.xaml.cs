@@ -1,4 +1,6 @@
-﻿using Minesweeper.View;
+﻿using Minesweeper.Model;
+using Minesweeper.View;
+using Minesweeper.ViewModel;
 using System.Windows;
 
 namespace Minesweeper

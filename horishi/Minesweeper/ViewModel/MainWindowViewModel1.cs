@@ -12,98 +12,148 @@ namespace Minesweeper.ViewModel
     {
 
         #region フィールド
+        private System.Double windowWidth ;
 
-        private IDictionary<Point, CellViewModel> cellGridItemsSource
-            = new Dictionary<Point, CellViewModel>()
-            {
-                    { Point.GetPoint(0, 0), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(1, 0), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(2, 0), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(3, 0), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(4, 0), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(0, 1), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(1, 1), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(2, 1), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(3, 1), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(4, 1), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(0, 2), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(1, 2), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(2, 2), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(3, 2), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(4, 2), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(0, 3), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(1, 3), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(2, 3), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(3, 3), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(4, 3), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(0, 4), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(1, 4), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(2, 4), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(3, 4), new CellViewModel(string.Empty) },
-                    { Point.GetPoint(4, 4), new CellViewModel(string.Empty) },
-            };
+        private System.Double windowHeight ;
 
-        private string clearTextLableContext = string.Empty;
-        private string clearTime = string.Empty;
+        private System.Double gridWidth ;
+
+        private System.Double gridHeight ;
+
+        private System.Int32 column ;
+
+        private System.Int32 row ;
+
+        private System.Int32 remainMineCount ;
+
+        private System.String clearTextLableContext ;
+
+        private System.String clearTime ;
+
 
         #endregion
 
         #region プロパティ
 
-        public IDictionary<Point, CellViewModel> CellGridItemsSource
-        {
-            get
-            {
-                return this.cellGridItemsSource;
-            }
-        }
-
-        public string WindowTitle
+        public System.String WindowTitle
         {
             get { return Resources.WindowTitle; }
         }
 
-        public string WindowWidth
-        {
-            get { return Resources.WindowWidth; }
-        }
-
-        public string WindowHeight
-        {
-            get { return Resources.WindowHeight; }
-        }
-
-        public string CellWidth
-        {
-            get { return Resources.CellWidth; }
-        }
-
-        public string CellHeight
-        {
-            get { return Resources.CellHeight; }
-        }
-
-        public string ContainerMargin
-        {
-            get { return Resources.ContainerMargin; }
-        }
-
-        public string StartButtonContext
+        public System.String StartButtonContext
         {
             get { return Resources.StartButtonContext; }
         }
 
-        public string RemainMineCountLabel
+        public System.String RemainMineCountLabel
         {
             get { return Resources.RemainMineCountLabel; }
         }
 
-        public string ClearTimeLabelContext
+        public System.String ClearTimeLabelContext
         {
             get { return Resources.ClearTimeLabelContext; }
         }
 
-        public string ClearTextLableContext
+        public System.Double WindowWidth
+        {
+            get
+            {
+                return this.windowWidth;
+            }
+            set
+            {
+                this.windowWidth = value;
+                base.NotifyChanged("WindowWidth");
+            }
+        }
+
+
+        public System.Double WindowHeight
+        {
+            get
+            {
+                return this.windowHeight;
+            }
+            set
+            {
+                this.windowHeight = value;
+                base.NotifyChanged("WindowHeight");
+            }
+        }
+
+
+        public System.Double GridWidth
+        {
+            get
+            {
+                return this.gridWidth;
+            }
+            set
+            {
+                this.gridWidth = value;
+                base.NotifyChanged("GridWidth");
+            }
+        }
+
+
+        public System.Double GridHeight
+        {
+            get
+            {
+                return this.gridHeight;
+            }
+            set
+            {
+                this.gridHeight = value;
+                base.NotifyChanged("GridHeight");
+            }
+        }
+
+
+        public System.Int32 Column
+        {
+            get
+            {
+                return this.column;
+            }
+            set
+            {
+                this.column = value;
+                base.NotifyChanged("Column");
+            }
+        }
+
+
+        public System.Int32 Row
+        {
+            get
+            {
+                return this.row;
+            }
+            set
+            {
+                this.row = value;
+                base.NotifyChanged("Row");
+            }
+        }
+
+
+        public System.Int32 RemainMineCount
+        {
+            get
+            {
+                return this.remainMineCount;
+            }
+            set
+            {
+                this.remainMineCount = value;
+                base.NotifyChanged("RemainMineCount");
+            }
+        }
+
+
+        public System.String ClearTextLableContext
         {
             get
             {
@@ -116,7 +166,8 @@ namespace Minesweeper.ViewModel
             }
         }
 
-        public string ClearTime
+
+        public System.String ClearTime
         {
             get
             {

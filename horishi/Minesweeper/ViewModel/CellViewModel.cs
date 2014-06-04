@@ -22,6 +22,22 @@ namespace Minesweeper.ViewModel
         }
 
         /// <summary>
+        /// セルの幅
+        /// </summary>
+        public double Width
+        {
+            get { return ControlSizeDefinition.CellWidth; }
+        }
+
+        /// <summary>
+        /// セルの高さ
+        /// </summary>
+        public double Height
+        {
+            get { return ControlSizeDefinition.CellHeight; }
+        }
+
+        /// <summary>
         /// 表示状態
         /// </summary>
         public string Display
