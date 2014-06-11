@@ -1,12 +1,12 @@
 ﻿<Window x:Class="Minesweeper.View.GameResultsWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:c="clr-namespace:Minesweeper.Common"
+        xmlns:fw="clr-namespace:Framework.Behavior;assembly=Framework"
         xmlns:vm="clr-namespace:Minesweeper.ViewModel"
         Title="{Binding Path=WindowTitle}"
         Height="200"
         Width="200"
-        c:WindowCloseBehavior.Close="{Binding CloseWindow}"
+        fw:WindowCloseBehavior.Close="{Binding CloseWindow}"
         ResizeMode="NoResize">
     <Window.DataContext>
         <vm:GameResultsWindowViewModel />

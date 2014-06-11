@@ -1,7 +1,6 @@
-﻿using Minesweeper.Common;
+﻿using Framework.Command;
+using Framework.ViewModel;
 using Minesweeper.Properties;
-using System;
-using System.Collections.Generic;
 
 namespace Minesweeper.ViewModel
 {

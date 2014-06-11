@@ -1,4 +1,5 @@
-﻿using Minesweeper.Common;
+﻿using Framework.Command;
+using Framework.ViewModel;
 using Minesweeper.Model;
 using Minesweeper.Properties;
 using Minesweeper.View;

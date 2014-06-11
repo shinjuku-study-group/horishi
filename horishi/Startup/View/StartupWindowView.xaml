@@ -1,0 +1,25 @@
+﻿<Window x:Class="Startup.View.StartupWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="clr-namespace:Startup.ViewModel"
+        Title="{Binding WindowTitle}"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize">
+    <Window.DataContext>
+        <vm:StartupWindowViewModel />
+    </Window.DataContext>
+    <StackPanel Orientation="Horizontal">
+        <StackPanel Margin="{Binding Margin}">
+            <Label Content="マインスイーパー" Margin="{Binding Margin}" />
+            <Button Content="スタート" Margin="{Binding Margin}" Command="{Binding ClickMinesweeperButton}" />
+        </StackPanel>
+        <StackPanel Margin="{Binding Margin}">
+            <Label Content="フリーセル" Margin="{Binding Margin}" />
+            <Button Content="スタート" Margin="{Binding Margin}" Command="{Binding ClickFreeCellButton}" />
+        </StackPanel>
+        <StackPanel Margin="{Binding Margin}">
+            <Label Content="ブラックジャック" Margin="{Binding Margin}" />
+            <Button Content="スタート" Margin="{Binding Margin}" Command="{Binding ClickBlackJackButton}" />
+        </StackPanel>
+    </StackPanel>
+</Window>

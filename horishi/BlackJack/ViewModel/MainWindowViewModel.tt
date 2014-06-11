@@ -1,0 +1,191 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="D:\c#\horishi\Common\bin\Debug\Common.dll" #>
+<#@ import namespace="Common.Trump" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# 
+    IEnumerable<Tuple<string, string>> cards = new List<Tuple<string, string>>()
+    {
+        new Tuple<string, string>("playerCards","PlayerCards"),
+        new Tuple<string, string>("dealerCards","DealerCards"),
+    };
+
+    IEnumerable<Tuple<string, string>> size_props = new List<Tuple<string, string>>()
+    {
+        new Tuple<string, string>("Margin","Margin"),
+        new Tuple<string, string>("GridHeight","CardHeight"),
+    };
+    IEnumerable<Tuple<Type, string>> get_only_props = new List<Tuple<Type, string>>()
+    {
+        new Tuple<Type, string>(typeof(string), "WindowTitle"),
+        new Tuple<Type, string>(typeof(string), "DealerName"),
+        new Tuple<Type, string>(typeof(string), "PlayerName"),
+        new Tuple<Type, string>(typeof(string), "CurrentCoins"),
+        new Tuple<Type, string>(typeof(string), "BetCoins"),
+        new Tuple<Type, string>(typeof(string), "GetCoinsWhenYouWin"),
+        new Tuple<Type, string>(typeof(string), "ButtonContent_Hit"),
+        new Tuple<Type, string>(typeof(string), "ButtonContent_Stand"),
+        new Tuple<Type, string>(typeof(string), "ButtonContent_Double"),
+        new Tuple<Type, string>(typeof(string), "ButtonContent_Split"),
+        new Tuple<Type, string>(typeof(string), "ButtonContent_Insurance"),
+    };
+    IEnumerable<Tuple<Type, string[]>> get_and_set_props = new List<Tuple<Type, string[]>>()
+    {
+        new Tuple<Type, string[]>(typeof(int), new string[] { "dealerScoreValue", "DealerScoreValue" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "playerScoreValue", "PlayerScoreValue" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "currentCoinsValue", "CurrentCoinsValue" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "betCoinsValue", "BetCoinsValue" }),
+        new Tuple<Type, string[]>(typeof(int), new string[] { "getCoinsWhenYouWinValue", "GetCoinsWhenYouWinValue" }),
+        new Tuple<Type, string[]>(typeof(string), new string[] { "dealerMessage", "DealerMessage" }),
+        new Tuple<Type, string[]>(typeof(string), new string[] { "playerMessage", "PlayerMessage" }),
+    };
+    IEnumerable<Tuple<Number, string>> numbers = new List<Tuple<Number, string>>()
+    {
+        new Tuple<Number, string>(Number.One, "01"),
+        new Tuple<Number, string>(Number.Two, "02"),
+        new Tuple<Number, string>(Number.Three, "03"),
+        new Tuple<Number, string>(Number.Four, "04"),
+        new Tuple<Number, string>(Number.Five, "05"),
+        new Tuple<Number, string>(Number.Six, "06"),
+        new Tuple<Number, string>(Number.Seven, "07"),
+        new Tuple<Number, string>(Number.Eight, "08"),
+        new Tuple<Number, string>(Number.Nine, "09"),
+        new Tuple<Number, string>(Number.Ten, "10"),
+        new Tuple<Number, string>(Number.Eleven, "11"),
+        new Tuple<Number, string>(Number.Twelve, "12"),
+        new Tuple<Number, string>(Number.Thirteen, "13"),
+    };
+#>
+using BlackJack.Properties;
+using Common.Trump;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+
+namespace BlackJack.ViewModel
+{
+    /// <summary>
+    /// メイン画面のViewModel
+    /// </summary>
+    public sealed partial class MainWindowViewModel
+    {
+        #region フィールド
+<#
+foreach(var card in cards)
+{
+#>
+        /// <summary>
+        /// <#= card.Item1 #>
+        /// </summary>
+        private IList<CardViewModel> <#= card.Item1 #> = new ObservableCollection<CardViewModel>();
+
+<#
+}
+foreach(var prop in get_and_set_props)
+{
+#>
+        /// <summary>
+        /// <#= prop.Item1 #>
+        /// </summary>
+        private <#= prop.Item1 #> <#= prop.Item2[0] #>;
+<#
+}
+#>
+        #endregion
+
+        #region プロパティ
+<#
+foreach(var card in cards)
+{
+#>
+        /// <summary>
+        /// <#= card.Item2 #>
+        /// </summary>
+        public IList<CardViewModel> <#= card.Item2 #>
+        {
+            get
+            {
+                return this.<#= card.Item1 #>;
+            }
+        }
+
+<#
+}
+foreach(var prop in get_and_set_props)
+{
+#>
+        /// <summary>
+        /// <#= prop.Item2[1] #>
+        /// </summary>
+        public <#= prop.Item1 #> <#= prop.Item2[1] #>
+        {
+            get
+            {
+                return this.<#= prop.Item2[0] #>;
+            }
+            set
+            {
+                this.<#= prop.Item2[0] #> = value;
+                base.NotifyChanged("<#= prop.Item2[1] #>");
+            }
+        }
+
+<#
+}
+foreach(var prop in size_props)
+{
+#>
+        /// <summary>
+        /// <#= prop #>
+        /// </summary>
+        public double <#= prop.Item1 #>
+        {
+            get
+            {
+                return SizeDefinition.<#= prop.Item2 #>;
+            }
+        }
+
+<#
+}
+foreach(var prop in get_only_props)
+{
+#>
+        /// <summary>
+        /// <#= prop.Item2 #>
+        /// </summary>
+        public <#= prop.Item1 #> <#= prop.Item2 #>
+        {
+            get
+            {
+                return Resources.<#= prop.Item2 #>;
+            }
+        }
+
+<#
+}
+#>
+        #endregion
+
+        /// <summary>
+        /// カードのキャッシュを作成します
+        /// </summary>
+        private void CreateCardCache()
+        {
+<#
+foreach(var num in numbers)
+{
+#>
+            this.cardDic[Card.Get(Mark.Clover, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\c<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Daia, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\d<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Spade, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\s<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Heart, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\h<#= num.Item2 #>.png"));
+<#
+}
+#>
+        }
+    }
+}

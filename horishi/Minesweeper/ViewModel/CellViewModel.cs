@@ -1,4 +1,4 @@
-﻿using Minesweeper.Common;
+﻿using Framework.ViewModel;
 
 namespace Minesweeper.ViewModel
 {

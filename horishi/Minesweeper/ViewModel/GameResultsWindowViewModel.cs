@@ -1,6 +1,7 @@
-﻿using Minesweeper.Common;
+﻿using Framework.Command;
+using Framework.Common.Serialize;
+using Framework.ViewModel;
 using Minesweeper.Model.GameResult;
-using Minesweeper.Model.Serialize;
 using Minesweeper.Properties;
 using System.Collections.Generic;
 
@@ -167,7 +168,7 @@ namespace Minesweeper.ViewModel
         /// </summary>
         private void ExexuteReset()
         {
-            var serializer = new XmlSerializer();
+            var serializer = new XmlSerializer<TotalGameResult>();
             var result = serializer.Read();
             if (this.SelectedTab.Level == Resources.MenubarItemGameLevelEasy)
             {
@@ -216,7 +217,7 @@ namespace Minesweeper.ViewModel
         {
             if (this.resultModel == null)
             {
-                this.resultModel = new XmlSerializer().Read();
+                this.resultModel = new XmlSerializer<TotalGameResult>().Read();
             }
         }
     }

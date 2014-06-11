@@ -1,0 +1,153 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="D:\c#\horishi\FreeCell\bin\Debug\FreeCell.dll" #>
+<#@ import namespace="FreeCell.Common" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<# 
+    IEnumerable<Tuple<Number, string>> numbers = new List<Tuple<Number, string>>()
+    {
+        new Tuple<Number, string>(Number.One, "01"),
+        new Tuple<Number, string>(Number.Two, "02"),
+        new Tuple<Number, string>(Number.Three, "03"),
+        new Tuple<Number, string>(Number.Four, "04"),
+        new Tuple<Number, string>(Number.Five, "05"),
+        new Tuple<Number, string>(Number.Six, "06"),
+        new Tuple<Number, string>(Number.Seven, "07"),
+        new Tuple<Number, string>(Number.Eight, "08"),
+        new Tuple<Number, string>(Number.Nine, "09"),
+        new Tuple<Number, string>(Number.Ten, "10"),
+        new Tuple<Number, string>(Number.Eleven, "11"),
+        new Tuple<Number, string>(Number.Twelve, "12"),
+        new Tuple<Number, string>(Number.Thirteen, "13"),
+    };
+    IEnumerable<Tuple<string, string>> homeCells = new List<Tuple<string, string>>()
+    {
+        new Tuple<string, string>("Clover", "clover"),
+        new Tuple<string, string>("Daia", "daia"),
+        new Tuple<string, string>("Spade", "spade"),
+        new Tuple<string, string>("Heart", "heart"),
+    };
+    IEnumerable<string> size = new List<string>()
+    {
+        "CardHeight",
+        "CardWidth",
+        "CellSpaceMargin",
+    };
+#>
+using Framework.ViewModel;
+using FreeCell.Common;
+
+namespace FreeCell.ViewModel
+{
+    /// <summary>
+    /// フリーセルのメイン画面ViewModel
+    /// </summary>
+    public sealed partial class MainWindowViewModel : ViewModelBase
+    {
+        #region フィールド
+<#
+foreach(var cell in homeCells)
+{
+#>
+        /// <summary>
+        /// ホームセル：cell.Item2
+        /// </summary>
+        private CardViewModel <#= cell.Item2 #>HomeCell;
+
+<#
+}
+for(int i = 1; i < 5; i++)
+{
+#>
+        /// <summary>
+        /// フリーセル<#= i #>
+        /// </summary>
+        private CardViewModel freeCell<#= i #>;
+
+<#
+}
+#>
+        #endregion
+
+        #region プロパティ
+<#
+foreach(var cell in homeCells)
+{
+#>
+        /// <summary>
+        /// ホームセル：<#= cell.Item1 #>
+        /// </summary>
+        public CardViewModel <#= cell.Item1 #>HomeCell
+        {
+            get
+            {
+                return this.<#= cell.Item2 #>HomeCell;
+            }
+            set
+            {
+                this.<#= cell.Item2 #>HomeCell = value;
+                base.NotifyChanged("<#= cell.Item1 #>HomeCell");
+            }
+        }
+
+<#
+}
+for(int i = 1; i < 5; i++)
+{
+#>
+        /// <summary>
+        /// フリーセル<#= i #>
+        /// </summary>
+        public CardViewModel FreeCell<#= i #>
+        {
+            get
+            {
+                return this.freeCell<#= i #>;
+            }
+            set
+            {
+                this.freeCell<#= i #> = value;
+                base.NotifyChanged("FreeCell<#= i #>");
+            }
+        }
+
+<#
+}
+foreach(var s in size)
+{
+#>
+        /// <summary>
+        /// <#= s #>
+        /// </summary>
+        public double <#= s #>
+        {
+            get { return SizeDefinition.<#= s #>; }
+        }
+
+<#
+}
+#>
+        #endregion
+
+        /// <summary>
+        /// カードのキャッシュを作成します
+        /// </summary>
+        private void CreateCardCache()
+        {
+<#
+foreach(var num in numbers)
+{
+#>
+            this.cardDic[Card.Get(Mark.Clover, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\c<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Daia, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\d<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Spade, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\s<#= num.Item2 #>.png"));
+            this.cardDic[Card.Get(Mark.Heart, Number.<#= num.Item1 #>)] = new CardViewModel(this.ReadBitmapImage("Resources\\h<#= num.Item2 #>.png"));
+<#
+}
+#>
+        }
+    }
+}

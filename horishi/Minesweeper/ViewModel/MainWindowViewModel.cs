@@ -1,6 +1,9 @@
-﻿using Minesweeper.Common;
+﻿using Framework.Command;
+using Framework.Common.Serialize;
+using Framework.ViewModel;
+using Minesweeper.Common;
 using Minesweeper.Model;
-using Minesweeper.Model.Serialize;
+using Minesweeper.Model.GameResult;
 using Minesweeper.Properties;
 using System;
 using System.Collections.Generic;
@@ -318,7 +321,7 @@ namespace Minesweeper.ViewModel
         /// </summary>
         private void WriteLooseResult()
         {
-            var serializer = new XmlSerializer();
+            var serializer = new XmlSerializer<TotalGameResult>();
             var result = serializer.Read();
             if (GameLogic.Instance.GameLevel.GetType() == typeof(EasyLevel))
                 result.Easy.LooseCount++;
@@ -334,7 +337,7 @@ namespace Minesweeper.ViewModel
         /// </summary>
         private void WriteWinResult()
         {
-            var serializer = new XmlSerializer();
+            var serializer = new XmlSerializer<TotalGameResult>();
             var result = serializer.Read();
             if (GameLogic.Instance.GameLevel.GetType() == typeof(EasyLevel))
                 result.Easy.WinCount++;

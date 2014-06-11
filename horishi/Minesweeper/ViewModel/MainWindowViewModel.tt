@@ -1,6 +1,6 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ assembly name="System.Core" #>
-<#@ assembly name="D:\c#\horishi\Minesweeper\bin\Debug\Minesweeper.exe" #>
+<#@ assembly name="D:\c#\horishi\Minesweeper\bin\Debug\Minesweeper.dll" #>
 <#@ import namespace="System" #>
 <#@ import namespace="System.Linq" #>
 <#@ import namespace="System.Text" #>
@@ -27,10 +27,9 @@
         new Tuple<Type, string[]>(typeof(string), new string[] { "clearTime", "ClearTime" }),
     };
 #>
-using Minesweeper.Common;
+using Framework.Command;
+using Framework.ViewModel;
 using Minesweeper.Properties;
-using System;
-using System.Collections.Generic;
 
 namespace Minesweeper.ViewModel
 {

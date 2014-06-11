@@ -1,6 +1,7 @@
 ﻿<Window x:Class="Minesweeper.View.MainWindowView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fw="clr-namespace:Framework.Behavior;assembly=Framework"
         xmlns:c="clr-namespace:Minesweeper.Common"
         xmlns:v="clr-namespace:Minesweeper.View"
         xmlns:vm="clr-namespace:Minesweeper.ViewModel"
@@ -9,7 +10,7 @@
         Title="{Binding Path=WindowTitle}"
         Width="{Binding Path=WindowWidth}"
         Height="{Binding Path=WindowHeight}"
-        c:WindowCloseBehavior.Close="{Binding CloseWindow}"
+        fw:WindowCloseBehavior.Close="{Binding CloseWindow}"
         ResizeMode="NoResize">
     <Window.Resources>
         <Style TargetType="{x:Type ColumnDefinition}">

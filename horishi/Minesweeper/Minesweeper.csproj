@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B824BCEC-3D73-4BF0-8019-4F2C63025C45}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Minesweeper</RootNamespace>
     <AssemblyName>Minesweeper</AssemblyName>
@@ -33,9 +33,14 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Framework">
+      <HintPath>..\Framework\bin\Debug\Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -50,19 +55,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
     <Compile Include="Model\GameResult\GameResult.cs" />
     <Compile Include="Model\GameResult\TotalGameResult.cs" />
-    <Compile Include="Model\Serialize\ISerializer.cs" />
-    <Compile Include="Common\WindowCloseBehavior.cs" />
     <Compile Include="Model\EasyLevel.cs" />
     <Compile Include="Model\GameLevel.cs" />
     <Compile Include="Model\HardLevel.cs" />
     <Compile Include="Model\NormalLevel.cs" />
-    <Compile Include="Model\Serialize\XmlSerializer.cs" />
     <Compile Include="ViewModel\ControlSizeDefinition.cs" />
     <Compile Include="ViewModel\GameLevelMenuItemViewModel.cs" />
     <Page Include="View\GameResultsWindowView.xaml">
@@ -73,15 +71,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Common\CellButton.cs" />
-    <Compile Include="Common\DelegateCommand.cs" />
-    <Compile Include="Common\DelegateCommand.OneParameter.cs" />
     <Compile Include="Common\Point.cs" />
-    <Compile Include="Common\ViewModelBase.cs" />
     <Compile Include="Model\Cell.cs" />
     <Compile Include="Model\CellState.cs" />
     <Compile Include="Model\GameLogic.cs" />
@@ -131,9 +122,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>MainWindowViewModel1.cs</LastGenOutput>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
